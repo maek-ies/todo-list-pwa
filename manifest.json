@@ -2,7 +2,7 @@
     "name": "My Todo List",
     "short_name": "Todo",
     "description": "Simple and powerful to-do list app",
-    "start_url": "/",
+    "start_url": "https://maek-ies.github.io/todo-list-pwa/",
     "display": "standalone",
     "background_color": "#f3e5f5",
     "theme_color": "#9C27B0",
