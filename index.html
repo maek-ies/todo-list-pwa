@@ -17,9 +17,18 @@
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #f3e5f5 0%, #ffe0f0 100%);
+            background: linear-gradient(135deg, var(--bg-start) 0%, var(--bg-end) 100%);
             min-height: 100vh;
             padding: 16px;
+            transition: background 0.3s ease;
+        }
+
+        :root {
+            --primary-color: #9C27B0;
+            --primary-dark: #7B1FA2;
+            --primary-light: #E1BEE7;
+            --bg-start: #f3e5f5;
+            --bg-end: #ffe0f0;
         }
 
         .container {
@@ -63,14 +72,14 @@
         }
 
         .category-option:hover {
-            border-color: #9C27B0;
+            border-color: var(--primary-color);
             background: #f3e5f5;
         }
 
         .category-option.selected {
-            background: #9C27B0;
+            background: var(--primary-color);
             color: white;
-            border-color: #9C27B0;
+            border-color: var(--primary-color);
         }
 
         label {
@@ -93,7 +102,7 @@
 
         select:focus, input[type="text"]:focus, input[type="password"]:focus {
             outline: none;
-            border-color: #9C27B0;
+            border-color: var(--primary-color);
             box-shadow: 0 0 0 2px rgba(156, 39, 176, 0.2);
         }
 
@@ -108,7 +117,7 @@
         }
 
         button {
-            background: #9C27B0;
+            background: var(--primary-color);
             color: white;
             border: none;
             padding: 12px 24px;
@@ -123,7 +132,7 @@
         }
 
         button:hover {
-            background: #7B1FA2;
+            background: var(--primary-dark);
         }
 
         button:active {
@@ -150,7 +159,7 @@
         .tab.active {
             background: white;
             box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            color: #9C27B0;
+            color: var(--primary-color);
             font-weight: 500;
         }
 
@@ -175,13 +184,13 @@
         }
 
         .filter-chip:hover {
-            border-color: #9C27B0;
+            border-color: var(--primary-color);
         }
 
         .filter-chip.active {
-            background: #9C27B0;
+            background: var(--primary-color);
             color: white;
-            border-color: #9C27B0;
+            border-color: var(--primary-color);
         }
 
         .stats {
@@ -241,7 +250,7 @@
         }
 
         .todo-item.drag-over {
-            border-top: 3px solid #9C27B0;
+            border-top: 3px solid var(--primary-color);
         }
 
         .drag-handle {
@@ -261,7 +270,7 @@
         .checkbox {
             width: 24px;
             height: 24px;
-            border: 2px solid #9C27B0;
+            border: 2px solid var(--primary-color);
             border-radius: 50%;
             cursor: pointer;
             flex-shrink: 0;
@@ -429,7 +438,7 @@
         }
 
         .option-card.selected {
-            border-color: #9C27B0;
+            border-color: var(--primary-color);
             background: #f3e5f5;
         }
 
@@ -495,6 +504,217 @@
             display: inline-flex;
             align-items: center;
             gap: 6px;
+        }
+
+        .options-button {
+            background: white;
+            border: 2px solid #e0e0e0;
+            color: #424242;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+        }
+
+        .options-button:hover {
+            border-color: var(--primary-color);
+            background: #f3e5f5;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            padding: 16px;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            max-height: 80vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            padding: 24px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #424242;
+        }
+
+        .close-button {
+            background: transparent;
+            color: #757575;
+            padding: 8px;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+            width: auto;
+            min-width: auto;
+        }
+
+        .close-button:hover {
+            background: #f5f5f5;
+            color: #424242;
+        }
+
+        .modal-tabs {
+            display: flex;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .modal-tab {
+            flex: 1;
+            padding: 16px;
+            background: transparent;
+            border: none;
+            border-bottom: 2px solid transparent;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            color: #757575;
+            transition: all 0.2s;
+        }
+
+        .modal-tab.active {
+            color: var(--primary-color);
+            border-bottom-color: var(--primary-color);
+        }
+
+        .modal-body {
+            padding: 24px;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .setting-item {
+            padding: 16px;
+            border-radius: 12px;
+            background: #f5f5f5;
+            margin-bottom: 16px;
+        }
+
+        .setting-title {
+            font-weight: 600;
+            color: #424242;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .setting-description {
+            font-size: 14px;
+            color: #757575;
+            margin-bottom: 12px;
+        }
+
+        .setting-status {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .status-encrypted {
+            background: #C8E6C9;
+            color: #2E7D32;
+        }
+
+        .status-unencrypted {
+            background: #BBDEFB;
+            color: #1565C0;
+        }
+
+        .warning-box {
+            background: #FFF3E0;
+            border-left: 4px solid #FF9800;
+            padding: 16px;
+            border-radius: 8px;
+            margin: 16px 0;
+        }
+
+        .warning-box strong {
+            color: #E65100;
+        }
+
+        .user-info {
+            text-align: center;
+            padding: 24px;
+        }
+
+        .user-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin: 0 auto 16px;
+        }
+
+        .user-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        .stat-box {
+            background: #f5f5f5;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 14px;
+            color: #757575;
+            margin-top: 4px;
         }
 
         @media (max-width: 640px) {
@@ -619,8 +839,13 @@
             <div class="card">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
                     <h1 style="margin: 0;">To-Do List</h1>
-                    <div id="securityBadge" style="display: none;" class="security-badge">
-                        🔐 Encrypted
+                    <div style="display: flex; align-items: center; gap: 8px;">
+                        <div id="securityBadge" style="display: none;" class="security-badge">
+                            🔐 Encrypted
+                        </div>
+                        <button class="options-button" onclick="openOptionsModal()">
+                            ⚙️
+                        </button>
                     </div>
                 </div>
 
@@ -699,6 +924,168 @@
 
             <div id="todoList"></div>
         </div>
+
+        <!-- Options Modal -->
+        <div id="optionsModal" class="modal-overlay" onclick="closeModalOnOutsideClick(event)">
+            <div class="modal-content" onclick="event.stopPropagation()">
+                <div class="modal-header">
+                    <h2 class="modal-title">Options</h2>
+                    <button class="close-button" onclick="closeOptionsModal()">✕</button>
+                </div>
+                
+                <div class="modal-tabs">
+                    <button class="modal-tab active" onclick="switchModalTab('user')">
+                        👤 User
+                    </button>
+                    <button class="modal-tab" onclick="switchModalTab('settings')">
+                        ⚙️ Settings
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <!-- User Tab -->
+                    <div id="userTab" class="tab-content active">
+                        <div class="user-info">
+                            <div class="user-avatar">📝</div>
+                            <h3 style="color: #424242; margin-bottom: 8px;">Todo User</h3>
+                            <p style="color: #757575; font-size: 14px;">Managing tasks efficiently</p>
+                        </div>
+
+                        <div class="user-stats">
+                            <div class="stat-box">
+                                <div class="stat-number" id="totalTasksCount">0</div>
+                                <div class="stat-label">Total Tasks</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-number" id="completedTasksCount">0</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item" style="margin-top: 24px;">
+                            <div class="setting-title">
+                                <span>🔐</span>
+                                <span>Security Status</span>
+                            </div>
+                            <div id="userSecurityStatus"></div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab -->
+                    <div id="settingsTab" class="tab-content">
+                        <div class="setting-item">
+                            <div class="setting-title">
+                                <span>🎨</span>
+                                <span>Theme Colors</span>
+                            </div>
+                            <div class="setting-description">
+                                Customize the app's color scheme
+                            </div>
+                            <div style="margin-top: 16px;">
+                                <label style="display: block; margin-bottom: 12px;">
+                                    <strong>Primary Color</strong>
+                                    <div style="display: flex; gap: 12px; align-items: center; margin-top: 8px;">
+                                        <input type="color" id="primaryColorPicker" value="#9C27B0" 
+                                               style="width: 60px; height: 40px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer;">
+                                        <span id="primaryColorHex" style="font-family: monospace; color: #757575;">#9C27B0</span>
+                                    </div>
+                                </label>
+                                <label style="display: block; margin-bottom: 12px;">
+                                    <strong>Background Gradient Start</strong>
+                                    <div style="display: flex; gap: 12px; align-items: center; margin-top: 8px;">
+                                        <input type="color" id="bgStartColorPicker" value="#f3e5f5" 
+                                               style="width: 60px; height: 40px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer;">
+                                        <span id="bgStartColorHex" style="font-family: monospace; color: #757575;">#f3e5f5</span>
+                                    </div>
+                                </label>
+                                <label style="display: block; margin-bottom: 16px;">
+                                    <strong>Background Gradient End</strong>
+                                    <div style="display: flex; gap: 12px; align-items: center; margin-top: 8px;">
+                                        <input type="color" id="bgEndColorPicker" value="#ffe0f0" 
+                                               style="width: 60px; height: 40px; border: 2px solid #e0e0e0; border-radius: 8px; cursor: pointer;">
+                                        <span id="bgEndColorHex" style="font-family: monospace; color: #757575;">#ffe0f0</span>
+                                    </div>
+                                </label>
+                                <div style="display: flex; gap: 8px;">
+                                    <button onclick="applyColors()" style="flex: 1;">
+                                        Apply Colors
+                                    </button>
+                                    <button onclick="resetColors()" style="flex: 1; background: #757575;">
+                                        Reset to Default
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-title">
+                                <span>🎨</span>
+                                <span>Preset Themes</span>
+                            </div>
+                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px;">
+                                <button onclick="applyTheme('purple')" style="background: linear-gradient(135deg, #9C27B0, #E1BEE7);">
+                                    Purple
+                                </button>
+                                <button onclick="applyTheme('blue')" style="background: linear-gradient(135deg, #2196F3, #BBDEFB);">
+                                    Blue
+                                </button>
+                                <button onclick="applyTheme('green')" style="background: linear-gradient(135deg, #4CAF50, #C8E6C9);">
+                                    Green
+                                </button>
+                                <button onclick="applyTheme('orange')" style="background: linear-gradient(135deg, #FF9800, #FFE0B2);">
+                                    Orange
+                                </button>
+                                <button onclick="applyTheme('pink')" style="background: linear-gradient(135deg, #E91E63, #F8BBD0);">
+                                    Pink
+                                </button>
+                                <button onclick="applyTheme('teal')" style="background: linear-gradient(135deg, #009688, #B2DFDB);">
+                                    Teal
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-title">
+                                <span>🔐</span>
+                                <span>Data Encryption</span>
+                            </div>
+                            <div class="setting-description">
+                                Current mode: <span id="currentEncryptionMode"></span>
+                            </div>
+                            <div id="encryptionActions"></div>
+                        </div>
+
+                        <div class="warning-box">
+                            <strong>⚠️ Important:</strong> Changing encryption settings will require you to re-enter your password (if encrypted) or create a new one. Your existing tasks will be migrated.
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-title">
+                                <span>📊</span>
+                                <span>Storage Info</span>
+                            </div>
+                            <div class="setting-description">
+                                Total tasks: <strong id="storageTotalTasks">0</strong><br>
+                                Data stored locally on this device
+                            </div>
+                        </div>
+
+                        <div class="setting-item">
+                            <div class="setting-title">
+                                <span>🗑️</span>
+                                <span>Danger Zone</span>
+                            </div>
+                            <div class="setting-description">
+                                Permanently delete all your data
+                            </div>
+                            <button onclick="confirmDeleteAllData()" style="background: #F44336; margin-top: 8px;">
+                                Delete All Data
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
@@ -713,6 +1100,130 @@
         let selectedSetupOption = null;
         let draggedElement = null;
         let draggedIndex = null;
+
+        // Load saved colors on startup
+        function loadSavedColors() {
+            const savedColors = localStorage.getItem('appColors');
+            if (savedColors) {
+                const colors = JSON.parse(savedColors);
+                applyColorTheme(colors.primary, colors.bgStart, colors.bgEnd);
+            }
+        }
+
+        // Apply color theme
+        function applyColorTheme(primary, bgStart, bgEnd) {
+            // Calculate variations
+            const primaryRGB = hexToRgb(primary);
+            const primaryDark = rgbToHex(
+                Math.max(0, primaryRGB.r - 30),
+                Math.max(0, primaryRGB.g - 30),
+                Math.max(0, primaryRGB.b - 30)
+            );
+            const primaryLight = rgbToHex(
+                Math.min(255, primaryRGB.r + 80),
+                Math.min(255, primaryRGB.g + 80),
+                Math.min(255, primaryRGB.b + 80)
+            );
+
+            // Apply CSS variables
+            document.documentElement.style.setProperty('--primary-color', primary);
+            document.documentElement.style.setProperty('--primary-dark', primaryDark);
+            document.documentElement.style.setProperty('--primary-light', primaryLight);
+            document.documentElement.style.setProperty('--bg-start', bgStart);
+            document.documentElement.style.setProperty('--bg-end', bgEnd);
+
+            // Update color pickers
+            if (document.getElementById('primaryColorPicker')) {
+                document.getElementById('primaryColorPicker').value = primary;
+                document.getElementById('primaryColorHex').textContent = primary;
+                document.getElementById('bgStartColorPicker').value = bgStart;
+                document.getElementById('bgStartColorHex').textContent = bgStart;
+                document.getElementById('bgEndColorPicker').value = bgEnd;
+                document.getElementById('bgEndColorHex').textContent = bgEnd;
+            }
+        }
+
+        // Color conversion helpers
+        function hexToRgb(hex) {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : null;
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+
+        // Update hex display when color picker changes
+        document.addEventListener('DOMContentLoaded', function() {
+            const pickers = [
+                { picker: 'primaryColorPicker', hex: 'primaryColorHex' },
+                { picker: 'bgStartColorPicker', hex: 'bgStartColorHex' },
+                { picker: 'bgEndColorPicker', hex: 'bgEndColorHex' }
+            ];
+
+            pickers.forEach(p => {
+                const picker = document.getElementById(p.picker);
+                if (picker) {
+                    picker.addEventListener('input', function() {
+                        document.getElementById(p.hex).textContent = this.value.toUpperCase();
+                    });
+                }
+            });
+        });
+
+        // Apply selected colors
+        function applyColors() {
+            const primary = document.getElementById('primaryColorPicker').value;
+            const bgStart = document.getElementById('bgStartColorPicker').value;
+            const bgEnd = document.getElementById('bgEndColorPicker').value;
+
+            applyColorTheme(primary, bgStart, bgEnd);
+
+            // Save to localStorage
+            localStorage.setItem('appColors', JSON.stringify({
+                primary: primary,
+                bgStart: bgStart,
+                bgEnd: bgEnd
+            }));
+
+            alert('Colors applied successfully!');
+        }
+
+        // Reset to default colors
+        function resetColors() {
+            const defaultColors = {
+                primary: '#9C27B0',
+                bgStart: '#f3e5f5',
+                bgEnd: '#ffe0f0'
+            };
+
+            applyColorTheme(defaultColors.primary, defaultColors.bgStart, defaultColors.bgEnd);
+            localStorage.setItem('appColors', JSON.stringify(defaultColors));
+
+            alert('Colors reset to default!');
+        }
+
+        // Apply preset themes
+        function applyTheme(theme) {
+            const themes = {
+                purple: { primary: '#9C27B0', bgStart: '#f3e5f5', bgEnd: '#ffe0f0' },
+                blue: { primary: '#2196F3', bgStart: '#e3f2fd', bgEnd: '#bbdefb' },
+                green: { primary: '#4CAF50', bgStart: '#e8f5e9', bgEnd: '#c8e6c9' },
+                orange: { primary: '#FF9800', bgStart: '#fff3e0', bgEnd: '#ffe0b2' },
+                pink: { primary: '#E91E63', bgStart: '#fce4ec', bgEnd: '#f8bbd0' },
+                teal: { primary: '#009688', bgStart: '#e0f2f1', bgEnd: '#b2dfdb' }
+            };
+
+            const colors = themes[theme];
+            applyColorTheme(colors.primary, colors.bgStart, colors.bgEnd);
+            localStorage.setItem('appColors', JSON.stringify(colors));
+
+            alert(`${theme.charAt(0).toUpperCase() + theme.slice(1)} theme applied!`);
+        }
 
         // Encryption functions
         function encryptData(data, password) {
@@ -1146,10 +1657,169 @@
         }
 
         // Initialize
+        loadSavedColors();
         checkSetupStatus();
 
         if (localStorage.getItem('installDismissed')) {
             document.getElementById('installPrompt').style.display = 'none';
+        }
+
+        // Options Modal Functions
+        function openOptionsModal() {
+            updateOptionsModal();
+            document.getElementById('optionsModal').classList.add('show');
+        }
+
+        function closeOptionsModal() {
+            document.getElementById('optionsModal').classList.remove('show');
+        }
+
+        function closeModalOnOutsideClick(event) {
+            if (event.target.id === 'optionsModal') {
+                closeOptionsModal();
+            }
+        }
+
+        function switchModalTab(tab) {
+            // Update tabs
+            document.querySelectorAll('.modal-tab').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update content
+            document.getElementById('userTab').classList.remove('active');
+            document.getElementById('settingsTab').classList.remove('active');
+            
+            if (tab === 'user') {
+                document.getElementById('userTab').classList.add('active');
+            } else {
+                document.getElementById('settingsTab').classList.add('active');
+            }
+        }
+
+        function updateOptionsModal() {
+            // Update stats
+            const totalTasks = todos.length;
+            const completedTasks = todos.filter(t => t.completed).length;
+            
+            document.getElementById('totalTasksCount').textContent = totalTasks;
+            document.getElementById('completedTasksCount').textContent = completedTasks;
+            document.getElementById('storageTotalTasks').textContent = totalTasks;
+
+            // Update encryption status
+            const isEncrypted = encryptionMode === 'encrypted';
+            const statusBadge = isEncrypted 
+                ? '<span class="setting-status status-encrypted">🔐 Encrypted (AES-256)</span>'
+                : '<span class="setting-status status-unencrypted">📂 Not Encrypted</span>';
+            
+            document.getElementById('userSecurityStatus').innerHTML = statusBadge;
+            document.getElementById('currentEncryptionMode').innerHTML = statusBadge;
+
+            // Update encryption actions
+            const actionsHtml = isEncrypted
+                ? `
+                    <button onclick="switchToUnencrypted()" style="background: #2196F3; margin-top: 12px;">
+                        Switch to Unencrypted
+                    </button>
+                    <button onclick="changePassword()" style="background: #FF9800; margin-top: 8px;">
+                        Change Password
+                    </button>
+                `
+                : `
+                    <button onclick="switchToEncrypted()" style="background: #4CAF50; margin-top: 12px;">
+                        Enable Encryption
+                    </button>
+                `;
+            
+            document.getElementById('encryptionActions').innerHTML = actionsHtml;
+        }
+
+        function switchToEncrypted() {
+            if (!confirm('Enable encryption? You will need to create a password.')) return;
+            
+            const password = prompt('Create a password for encryption:');
+            if (!password) return;
+            
+            const confirmPassword = prompt('Confirm your password:');
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Migrate data
+            encryptionKey = password;
+            encryptionMode = 'encrypted';
+            localStorage.setItem('encryptionMode', 'encrypted');
+            localStorage.removeItem('todos');
+            saveTodos();
+            
+            document.getElementById('securityBadge').style.display = 'inline-flex';
+            alert('Encryption enabled successfully!');
+            closeOptionsModal();
+            updateOptionsModal();
+        }
+
+        function switchToUnencrypted() {
+            if (!confirm('Disable encryption? Your data will be stored without encryption.')) return;
+            
+            // Verify password first
+            const password = prompt('Enter your current password to confirm:');
+            if (!password || password !== encryptionKey) {
+                alert('Incorrect password!');
+                return;
+            }
+
+            // Migrate data
+            encryptionMode = 'none';
+            encryptionKey = null;
+            localStorage.setItem('encryptionMode', 'none');
+            localStorage.removeItem('encryptedTodos');
+            localStorage.setItem('todos', JSON.stringify(todos));
+            
+            document.getElementById('securityBadge').style.display = 'none';
+            alert('Encryption disabled. Data is now stored without encryption.');
+            closeOptionsModal();
+            updateOptionsModal();
+        }
+
+        function changePassword() {
+            const currentPassword = prompt('Enter your current password:');
+            if (!currentPassword || currentPassword !== encryptionKey) {
+                alert('Incorrect password!');
+                return;
+            }
+
+            const newPassword = prompt('Enter your new password:');
+            if (!newPassword) return;
+
+            const confirmPassword = prompt('Confirm your new password:');
+            if (newPassword !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+
+            // Update encryption key and re-save
+            encryptionKey = newPassword;
+            saveTodos();
+            
+            alert('Password changed successfully!');
+            closeOptionsModal();
+        }
+
+        function confirmDeleteAllData() {
+            if (!confirm('⚠️ WARNING: This will permanently delete ALL your tasks and settings. This cannot be undone!')) return;
+            
+            const confirmation = prompt('Type "DELETE" to confirm:');
+            if (confirmation !== 'DELETE') {
+                alert('Deletion cancelled.');
+                return;
+            }
+
+            // Clear all data
+            todos = [];
+            localStorage.clear();
+            
+            alert('All data has been deleted. The page will reload.');
+            location.reload();
         }
     </script>
 </body>
